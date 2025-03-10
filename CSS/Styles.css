@@ -1,0 +1,836 @@
+:root {
+    --theme-color: #bf43ff;
+    --light-theme-color: #f3d1ff;
+    --hover-color: #bf43ff;
+}
+
+* {
+    margin: 0;
+    padding: 3;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+/*Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 8%;
+    background-color: #fff;
+}
+
+.logo img {
+    height: 50px;
+    max-width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: 2rem;
+}
+
+.nav-links > li {
+    list-style: none;
+}
+
+.nav-links > li > a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links > li > a::before,
+.nav-links > li > a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--theme-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links > li > a::before {
+    top: 0;
+    left: 0;
+}
+
+.nav-links > li > a::after {
+    bottom: 0;
+    right: 0;
+}
+
+.nav-links > li > a:hover::before,
+.nav-links > li > a:hover::after {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-login {
+    background-color: var(--light-theme-color);
+    color: var(--theme-color);
+}
+
+.btn-try {
+    background-color: var(--theme-color);
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 800px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 1rem;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dropdown-item {
+    flex-basis: calc(50% - 1rem);
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.dropdown-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.dropdown-item p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.dropdown-item:hover h3,
+.dropdown-item:hover p {
+    color: var(--hover-color);
+}
+
+.dropdown-icon {
+    margin-left: 5px;
+}
+
+.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.content-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 20px 0;
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+        display: block;
+        order: 1;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        display: none;
+        order: 3;
+        margin-left: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .buttons {
+        display: none;
+    }
+
+    .nav-links.active .buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .dropdown-content {
+        position: static;
+        min-width: 100%;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown-item {
+        flex-basis: 100%;
+    }
+}
+/* End of Navigation Bar */
+
+/* Compare Plans */
+.plan-comparison {
+    font-family: "Poppins", sans-serif;
+    margin: 50px auto;
+    padding: 30px;
+    max-width: 1400px;
+    overflow-x: auto;
+}
+
+.plan-comparison table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.plan-comparison th,
+.plan-comparison td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+}
+
+.plan-comparison th {
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.plan-comparison td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+.plan-comparison th:last-child,
+.plan-comparison td:last-child {
+    border-right: none;
+}
+
+.plan-comparison tr:last-child td {
+    border-bottom: none;
+}
+
+.plan-price {
+    font-size: 0.9em;
+    margin: 10px 0;
+}
+
+.plan-price .per-month {
+    font-size: 0.5em;
+    color: #666;
+}
+
+.choose-plan {
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.choose-plan:hover {
+    background-color: var(--hover-color);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.tooltip::before {
+    content: "?";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    background-color: var(--light-theme-color);
+    color: black;
+    text-align: left;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    max-width: 300px;
+    width: max-content;
+    white-space: normal;
+    word-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    margin-left: 10px; /* Add some space between the ? and the tooltip */
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .plan-comparison {
+        padding: 15px;
+    }
+
+    .plan-comparison th,
+    .plan-comparison td {
+        padding: 15px 10px;
+    }
+
+    .choose-plan {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+/* End of Compare Plans */
+
+/* Pricing & Plans */
+.pricing-section {
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.pricing-title {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.pricing-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 10px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--theme-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px;
+    width: 370px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid transparent; /* Add a transparent border to all plans */
+}
+
+.plan.popular {
+    border-color: var(
+        --theme-color
+    ); /* Use the theme color for the border of the professional plan */
+    box-shadow: 0 6px 12px rgba(191, 67, 255, 0.15); /* Optional: add a slightly more pronounced shadow */
+}
+
+.plan-type {
+    color: var(--theme-color);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.plan-billing {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.start-trial {
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.features {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.features li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.features li::before {
+    content: "✓";
+    color: var(--theme-color);
+    position: absolute;
+    left: 0;
+}
+
+.book-demo {
+    color: var(--theme-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.popular-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--theme-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.crossed-out {
+    text-decoration: line-through;
+    color: #999;
+}
+
+@media (max-width: 1024px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .plan {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+}
+/* End of Pricing & Plans */
+
+/* Hero */
+.hero {
+    display: flex;
+    height: 90vh;
+    padding: 2rem 8%;
+    align-items: center;
+}
+
+.hero-content {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-title {
+    font-size: 4.8rem;
+    color: #000;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-title .highlight {
+    color: var(--theme-color);
+}
+
+.hero-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.hero-image {
+    flex: 0 0 60%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .hero-content,
+    .hero-image {
+        flex: 0 0 100%;
+    }
+
+    .hero-image {
+        height: 50vh;
+        margin-top: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.hero-trial-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+/* End of Hero */
+
+/* Free Trial Container */
+.free-trial-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.free-trial-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.try-now-button {
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.try-now-button:hover {
+    background-color: var(--hover-color);
+}
+/* End of Free Trial Container */
+
+/* Client Logo Slider */
+.trusted-by {
+    text-align: center;
+    margin: 40px auto;
+    /* You can adjust the width here */
+    width: 90%;
+    max-width: 1200px;
+}
+
+.trusted-by-title {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: var(--theme-color);
+}
+
+.logo-slider-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-slider-container::before,
+.logo-slider-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+}
+
+.logo-slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+}
+
+.logo-slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+}
+
+.logo-slider {
+    display: flex;
+    animation: slide 20s linear infinite;
+}
+
+.logo-slider img {
+    height: 30px; /* Adjust as needed */
+    margin: 0 20px;
+    object-fit: contain;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* End of Client Logo Slider */
+
+/* Influencer Count */
+.stats-container {
+    display: flex;
+    justify-content: center; /* Changed from space-around to center */
+    align-items: center;
+    margin: 50px 0;
+}
+
+.stat {
+    text-align: center;
+    width: 100%; /* Set a width for each stat */
+    max-width: 600px; /* Prevent stats from getting too wide */
+}
+
+.stat-number {
+    font-size: 7rem;
+    font-weight: bold;
+    color: var(--theme-color);
+    margin-bottom: -25px;
+}
+
+.stat-text {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+/* End of Influencer Count */
+
+/* Available Across Three Platforms */
+.platform-availability {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px; /* Adjust this value for desired text size */
+    margin: 20px 0;
+}
+
+.availability-text {
+    margin-right: 20px;
+}
+
+.highlight {
+    color: var(--theme-color);
+    font-weight: bold;
+}
+
+.platform-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+}
+
+.platform-icons i {
+    font-size: 30px; /* Match icon size to text size */
+    color: #333; /* Adjust icon color as needed */
+}
+/* End of Available Across Three Platforms */
+
+/* End of Who are you? */
